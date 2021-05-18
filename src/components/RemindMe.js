@@ -3,9 +3,7 @@ import './RemindMe.css';
 
 const RemindMe = () => {
     return (
-        <div className="remindMe">
-            <h1>hi</h1>
-        </div>
+        <div></div>
     )
 }
 
