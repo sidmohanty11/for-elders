@@ -1,19 +1,12 @@
 import './App.css';
 import Body from './components/Body';
-import { Route, Switch } from 'react-router-dom';
-import RemindMe from './components/RemindMe';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Body />
-        </Route>
-        <Route path="/start">
-          <RemindMe />
-        </Route>
-      </Switch>
+      <Header />
+      <Body />
     </div>
   );
 }

@@ -1,26 +1,43 @@
-import React from 'react';
+import React from "react";
 import './Body.css';
-import { Link } from 'react-router-dom';
 
 const Body = () => {
-    return (
-        <>
-            <div className="header">
-                <nav className="header__nav">
-                    <img src="./my_logo.png" alt="logo" />
-                    <Link to="/start" className="header__button">Get Started</Link>
-                </nav>
-            </div>
-            <video autoplay="autoplay" width="100%" muted loop className="myVideo">
-                <source src="./2.mp4" type="video/mp4" />
-            </video>
-                <div className="content">
-                    <h1>I Will Never Leave You!</h1>
-                    <p>It's an initiative to help our grandpa and grandma never ever forget to take care of themselves. This app will ensure that they take their medicines on time.</p>
-                <Link to="/start" className="myBtn">Let's Go!</Link>
-                </div>
-        </>
-    )
-}
+  return (
+    <section className="showcase">
+      <video muted loop autoplay="autoplay">
+        <source src="./1.mp4" type="video/mp4" />
+      </video>
+      <div className="overlay"></div>
+      <div className="text">
+        <h2>Never stop</h2>
+        <h3>exploring the world</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
+          veritatis molestiae corrupti voluptatibus reprehenderit voluptatem
+          consequuntur, debitis aperiam hic quisquam!
+        </p>
+        <a href="#">explore</a>
+      </div>
+
+      <ul className="social">
+        <li>
+          <a>
+            <img src="./chat.png" alt="" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="./email.png" alt="" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="./care.png" alt="" />
+          </a>
+        </li>
+      </ul>
+    </section>
+  );
+};
 
 export default Body;

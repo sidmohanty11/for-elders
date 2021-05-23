@@ -1,81 +1,141 @@
-.myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  object-fit: contain;
-  min-height: 100%;
-  z-index: -1;
+.showcase{
+    position:absolute;
+    right:0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111;
+    color:#fff;
+    z-index: 2;
 }
 
-/* Add some content at the bottom of the video/page */
-.content {
-  position: fixed;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
+.logo{
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
-/* Style the button used to pause/play the video */
-.myBtn {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  text-decoration: none;
+.toggle{
+    position:relative;
+    width:60px;
+    height:60px;
+    /* background:url(); menu icon */
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position:center;
+    cursor: pointer;
 }
 
-.myBtn:hover {
-  background: #ddd;
-  color: black;
+/* .toggle.active{
+    background:url(); close icon
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:center;
+} */
+
+.showcase video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
 }
 
-.header__nav{
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    /* mix-blend-mode:overlay */
+}
+
+.text{
+    position:relative;
+    z-index:10;
+}
+
+.text h2{
+    font-size:5em;
+    font-weight:800;
+    line-height:1em;
+    text-transform: uppercase;
+}
+
+.text h3{
+    font-size:4em;
+    font-weight:700;
+    line-height:1em;
+    text-transform: uppercase;
+}
+
+.text p{
+    font-size:1.1em;
+    margin:20px 0;
+    font-weight: 400;
+    max-width: 700px;
+}
+
+.text a {
+    display: inline-block;
+    font-size: 1em;
+    background-color: #fff;
+    padding:10px 30px;
+    text-decoration: none;
+    color:#111;
+    margin-top:10px;
+    text-transform: uppercase;
+    letter-spacing:2px;
+    transition: 0.2s;
+}
+
+.text a:hover{
+    letter-spacing:6px;
+}
+
+.social {
+    position: absolute;
+    bottom:20px;
+    z-index: 10;
     display:flex;
-    justify-content: space-around;
+    justify-content:center;
+    align-items:center;
 }
 
-.header__nav > img{
-    height:100px;
-    width: 100px;
+.social li{
+    list-style:none;
 }
 
-.header__button{
-    box-sizing: border-box;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 2px solid black;
-  border-radius: 0.6em;
-  color: whitesmoke;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+.social li a{
+    cursor:pointer;
+    display:inline-block;
+    margin-right:20px;
+    transform:scale(0.5);
+    transition:0.5s;
 }
 
-.header__button:hover{
-  box-shadow: 0 0 40px 40px black inset;
+.social li a img{
+    width: 70px;
+    filter:invert(1);
+}
+
+.social li a:hover{
+    transform:scale(0.5) translateY(-15px);
+}
+
+@media (max-width: 991px){
+    .showcase{
+        padding:40px;
+    }
+    .text h2{
+        font-size: 3em;
+    }
+    .text h3{
+        font-size: 2em;
+    }
 }
