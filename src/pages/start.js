@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
-import Navbar from '../components/Navbar';
-import TheStartBody from '../components/TheStartBody';
+import React, { useState } from "react";
+import Navbar from "../components/Navbar";
+import TheStartBody from "../components/TheStartBody";
+import { auth } from "../firebase";
 
 const LetsStart = () => {
-    return (
-        <div>
-            <Navbar />
-            <TheStartBody />
-        </div>
-    )
-}
+    const logout = async () => {
+        await auth.signOut().then(() => console.log("signout"));
+  };
+  return (
+    <div>
+      <Navbar logout={logout} />
+      <TheStartBody />
+    </div>
+  );
+};
 
 export default LetsStart;

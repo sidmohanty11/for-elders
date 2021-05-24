@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./Register.css";
 import db from "../firebase";
 import {useHistory} from "react-router-dom";
+import { auth } from "../firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const MedsForm = () => {
-  // const [myState, setMyState] = useState([]);
-  //the refs
+  const [user] = useAuthState(auth);
   const again1Ref = useRef();
   const again2Ref = useRef();
   const again3Ref = useRef();
@@ -46,7 +47,8 @@ const MedsForm = () => {
       med5: { name: med5Ref.current.value, time: again5Ref.current.value },
   };
     // console.log(medData.map(({name, time, id}) => (console.log(name,time,id))));
-    await db.collection("users").doc("meds").set(medData);
+    // console.log(db.collection("users").doc(""));
+    await db.collection("users").doc(user.uid).collection("meds").add(medData);
     history.push('/dashboard');
   };
 

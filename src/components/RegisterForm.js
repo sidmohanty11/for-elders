@@ -9,8 +9,11 @@ import {
   FormLabel,
 } from "@material-ui/core";
 import db from "../firebase";
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const RegisterForm = () => {
+  const [user] = useAuthState(auth);
   const history = useHistory();
   const [genderCategory, setGenderCategory] = useState("");
   const nameHandler = useRef();
@@ -20,7 +23,7 @@ const RegisterForm = () => {
   const pinHandler = useRef();
   const addressHandler = useRef();
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
 
     const userData = {
@@ -33,7 +36,7 @@ const RegisterForm = () => {
       gender: genderCategory,
     };
 
-    db.collection("users").add(userData);
+    await db.collection("users").doc(user.uid).set(userData);
 
     history.push("/more");
   };
