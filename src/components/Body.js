@@ -1,5 +1,6 @@
 import React from "react";
 import './Body.css';
+import { Link } from "react-router-dom";
 
 const Body = () => {
   return (
@@ -9,14 +10,14 @@ const Body = () => {
       </video>
       <div className="overlay"></div>
       <div className="text">
-        <h2>Never stop</h2>
-        <h3>exploring the world</h3>
+        <h2>We care.</h2>
+        <h3>Never lose the precious smile that you carry.</h3>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
           veritatis molestiae corrupti voluptatibus reprehenderit voluptatem
           consequuntur, debitis aperiam hic quisquam!
         </p>
-        <a href="#">explore</a>
+        <Link to="/register">Get started</Link>
       </div>
 
       <ul className="social">
