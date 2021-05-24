@@ -3,7 +3,7 @@ import MedsForm from "../components/MedsForm";
 
 const More = () => {
   return <>
-  <MedsForm />
+    <MedsForm />
   </>;
 };
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import "./Register.css";
 import {
   FormControlLabel,
@@ -8,6 +8,7 @@ import {
   RadioGroup,
   FormLabel,
 } from "@material-ui/core";
+import db from "../firebase";
 
 const RegisterForm = () => {
   const history = useHistory();
@@ -32,76 +33,93 @@ const RegisterForm = () => {
       gender: genderCategory,
     };
 
-    console.log(userData);
-    history.push('/more');
+    db.collection("users").add(userData);
+
+    history.push("/more");
   };
 
-    return (
-      <div className="Body">
-        <div className="container">
-          <div className="title">Tell me about yourself</div>
-          <form action="POST" onSubmit={formHandler}>
-            <div className="user-details">
-              <div className="input-box">
-                <span className="details">Name</span>
-                <input
-                  ref={nameHandler}
-                  type="text"
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Birthday</span>
-                <input ref={bdHandler} type="date" placeholder="Enter your BirthDay" />
-              </div>
-              <div className="input-box">
-                <span className="details">Phone Number</span>
-                <input ref={phoneHandler} type="text" placeholder="Enter your phone" />
-              </div>
-              <div className="input-box">
-                <span className="details">Age</span>
-                <input ref={ageHandler} type="text" placeholder="Enter your age" />
-              </div>
-              <div className="input-box">
-                <span className="details">Address</span>
-                <input ref={addressHandler} type="text" placeholder="Enter your address" />
-              </div>
-              <div className="input-box">
-                <span className="details">PIN Code</span>
-                <input ref={pinHandler} type="text" placeholder="Enter your PIN" />
-              </div>
+  return (
+    <div className="Body">
+      <div className="container">
+        <div className="title">Tell me about yourself</div>
+        <form action="POST" onSubmit={formHandler}>
+          <div className="user-details">
+            <div className="input-box">
+              <span className="details">Name</span>
+              <input
+                ref={nameHandler}
+                type="text"
+                placeholder="Enter your name"
+              />
             </div>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
-              <RadioGroup
-                aria-label="gender"
-                value={genderCategory}
-                onChange={(e) => setGenderCategory(e.target.value)}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label="Other"
-                />
-              </RadioGroup>
-            </FormControl>
-            <div className="button">
-              <input type="submit" value="Register" />
+            <div className="input-box">
+              <span className="details">Birthday</span>
+              <input
+                ref={bdHandler}
+                type="date"
+                placeholder="Enter your BirthDay"
+              />
             </div>
-          </form>
-        </div>
+            <div className="input-box">
+              <span className="details">Phone Number</span>
+              <input
+                ref={phoneHandler}
+                type="text"
+                placeholder="Enter your phone"
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Age</span>
+              <input
+                ref={ageHandler}
+                type="text"
+                placeholder="Enter your age"
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Address</span>
+              <input
+                ref={addressHandler}
+                type="text"
+                placeholder="Enter your address"
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">PIN Code</span>
+              <input
+                ref={pinHandler}
+                type="text"
+                placeholder="Enter your PIN"
+              />
+            </div>
+          </div>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Gender</FormLabel>
+            <RadioGroup
+              aria-label="gender"
+              value={genderCategory}
+              onChange={(e) => setGenderCategory(e.target.value)}
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Female"
+              />
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel
+                value="other"
+                control={<Radio />}
+                label="Other"
+              />
+            </RadioGroup>
+          </FormControl>
+          <div className="button">
+            <input type="submit" value="Register" />
+          </div>
+        </form>
       </div>
-    );
+    </div>
+  );
 };
 
 export default RegisterForm;

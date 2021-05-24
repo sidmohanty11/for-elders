@@ -4,6 +4,8 @@ import Register from './pages/register';
 import Home from './pages/home';
 import More from "./pages/more";
 import Login from './pages/login';
+import Dashboard from "./pages/dashboard";
+import LetsStart from './pages/start';
 
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
         </Route>
         <Route exact path="/more">
           <More />
+        </Route>
+        <Route exact path="/start">
+          <LetsStart />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
         </Route>
       </Switch>
     </div>

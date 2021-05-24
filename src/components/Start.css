@@ -1,0 +1,13 @@
+.the_dashboard_body{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    bottom:0;
+}
+
+@media (max-width:800px){
+    .the_dashboard_body{
+        display: grid;
+    }
+}

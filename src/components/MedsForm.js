@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Register.css";
 import db from "../firebase";
+import {useHistory} from "react-router-dom";
 
 const MedsForm = () => {
-  const [myState, setMyState] = useState([]);
+  // const [myState, setMyState] = useState([]);
   //the refs
   const again1Ref = useRef();
   const again2Ref = useRef();
@@ -16,6 +17,8 @@ const MedsForm = () => {
   const med3Ref = useRef();
   const med4Ref = useRef();
   const med5Ref = useRef();
+
+  const history = useHistory();
   //for retrieving data from firestore!
   //   const getDataFromFirebase = () => {
   //     db.collection("meds").onSnapshot((q) => {
@@ -32,20 +35,19 @@ const MedsForm = () => {
   //     getDataFromFirebase();
   //   }, []);
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
 
-    const medData = [
-      { name: med1Ref.current.value, time: again1Ref.current.value },
-      { name: med2Ref.current.value, time: again2Ref.current.value },
-      { name: med3Ref.current.value, time: again3Ref.current.value },
-      { name: med4Ref.current.value, time: again4Ref.current.value },
-      { name: med5Ref.current.value, time: again5Ref.current.value },
-    ];
+    const medData = {
+      med1: { name: med1Ref.current.value, time: again1Ref.current.value },
+      med2: { name: med2Ref.current.value, time: again2Ref.current.value },
+      med3: { name: med3Ref.current.value, time: again3Ref.current.value },
+      med4: { name: med4Ref.current.value, time: again4Ref.current.value },
+      med5: { name: med5Ref.current.value, time: again5Ref.current.value },
+  };
     // console.log(medData.map(({name, time, id}) => (console.log(name,time,id))));
-    medData.map((o) =>
-      db.collection("meds").add({ name: o.name, time: o.time })
-    );
+    await db.collection("users").doc("meds").set(medData);
+    history.push('/dashboard');
   };
 
   return (
