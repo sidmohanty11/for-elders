@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Body = () => {
   return (
     <section className="showcase">
-      <video muted loop autoplay="autoplay">
+      <video muted loop autoPlay>
         <source src="./1.mp4" type="video/mp4" />
       </video>
       <div className="overlay"></div>

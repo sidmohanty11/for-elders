@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import "./Register.css";
 import {
   FormControlLabel,
@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 
 const Register = () => {
+  const history = useHistory();
   const [genderCategory, setGenderCategory] = useState("");
   const nameHandler = useRef();
   const emailHandler = useRef();
@@ -32,6 +33,7 @@ const Register = () => {
     };
 
     console.log(userData);
+    history.push('/more');
   };
 
     return (
@@ -42,27 +44,31 @@ const Register = () => {
             <div className="user-details">
               <div className="input-box">
                 <span className="details">Name</span>
-                <input ref={nameHandler} type="text" />
+                <input
+                  ref={nameHandler}
+                  type="text"
+                  placeholder="Enter your name"
+                />
               </div>
               <div className="input-box">
                 <span className="details">Email</span>
-                <input ref={emailHandler} type="text" />
+                <input ref={emailHandler} type="text" placeholder="Enter your email" />
               </div>
               <div className="input-box">
                 <span className="details">Phone Number</span>
-                <input ref={phoneHandler} type="text" />
+                <input ref={phoneHandler} type="text" placeholder="Enter your phone" />
               </div>
               <div className="input-box">
                 <span className="details">Age</span>
-                <input ref={ageHandler} type="text" />
+                <input ref={ageHandler} type="text" placeholder="Enter your age" />
               </div>
               <div className="input-box">
                 <span className="details">Address</span>
-                <input ref={addressHandler} type="text" />
+                <input ref={addressHandler} type="text" placeholder="Enter your address" />
               </div>
               <div className="input-box">
                 <span className="details">PIN Code</span>
-                <input ref={pinHandler} type="text" />
+                <input ref={pinHandler} type="text" placeholder="Enter your PIN" />
               </div>
             </div>
             <FormControl component="fieldset">
