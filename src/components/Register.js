@@ -34,58 +34,68 @@ const Register = () => {
     console.log(userData);
   };
 
-  return (
-    <div className="container">
-      <div className="title">Tell me about yourself</div>
-      <form action="POST" onSubmit={formHandler}>
-        <div className="user-details">
-          <div className="input-box">
-            <span className="details">Name</span>
-            <input ref={nameHandler} type="text" />
-          </div>
-          <div className="input-box">
-            <span className="details">Email</span>
-            <input ref={emailHandler} type="text" />
-          </div>
-          <div className="input-box">
-            <span className="details">Phone Number</span>
-            <input ref={phoneHandler} type="text" />
-          </div>
-          <div className="input-box">
-            <span className="details">Age</span>
-            <input ref={ageHandler} type="text" />
-          </div>
-          <div className="input-box">
-            <span className="details">Address</span>
-            <input ref={addressHandler} type="text" />
-          </div>
-          <div className="input-box">
-            <span className="details">PIN Code</span>
-            <input ref={pinHandler} type="text" />
-          </div>
+    return (
+      <div className="Body">
+        <div className="container">
+          <div className="title">Tell me about yourself</div>
+          <form action="POST" onSubmit={formHandler}>
+            <div className="user-details">
+              <div className="input-box">
+                <span className="details">Name</span>
+                <input ref={nameHandler} type="text" />
+              </div>
+              <div className="input-box">
+                <span className="details">Email</span>
+                <input ref={emailHandler} type="text" />
+              </div>
+              <div className="input-box">
+                <span className="details">Phone Number</span>
+                <input ref={phoneHandler} type="text" />
+              </div>
+              <div className="input-box">
+                <span className="details">Age</span>
+                <input ref={ageHandler} type="text" />
+              </div>
+              <div className="input-box">
+                <span className="details">Address</span>
+                <input ref={addressHandler} type="text" />
+              </div>
+              <div className="input-box">
+                <span className="details">PIN Code</span>
+                <input ref={pinHandler} type="text" />
+              </div>
+            </div>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup
+                aria-label="gender"
+                value={genderCategory}
+                onChange={(e) => setGenderCategory(e.target.value)}
+              >
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="other"
+                  control={<Radio />}
+                  label="Other"
+                />
+              </RadioGroup>
+            </FormControl>
+            <div className="button">
+              <input type="submit" value="Register" />
+            </div>
+          </form>
         </div>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Gender</FormLabel>
-          <RadioGroup
-            aria-label="gender"
-            value={genderCategory}
-            onChange={(e) => setGenderCategory(e.target.value)}
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-          </RadioGroup>
-        </FormControl>
-        <div className="button">
-          <input type="submit" value="Register" />
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default Register;
