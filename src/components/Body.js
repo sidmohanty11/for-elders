@@ -17,7 +17,7 @@ const Body = () => {
           veritatis molestiae corrupti voluptatibus reprehenderit voluptatem
           consequuntur, debitis aperiam hic quisquam!
         </p>
-        <Link to="/register">Get started</Link>
+        <Link to="/login">Get started</Link>
       </div>
 
       <ul className="social">

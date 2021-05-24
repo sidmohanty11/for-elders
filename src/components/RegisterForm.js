@@ -9,11 +9,11 @@ import {
   FormLabel,
 } from "@material-ui/core";
 
-const Register = () => {
+const RegisterForm = () => {
   const history = useHistory();
   const [genderCategory, setGenderCategory] = useState("");
   const nameHandler = useRef();
-  const emailHandler = useRef();
+  const bdHandler = useRef();
   const phoneHandler = useRef();
   const ageHandler = useRef();
   const pinHandler = useRef();
@@ -24,7 +24,7 @@ const Register = () => {
 
     const userData = {
       name: nameHandler.current.value,
-      email: emailHandler.current.value,
+      bd: bdHandler.current.value,
       phone: phoneHandler.current.value,
       age: ageHandler.current.value,
       pin: pinHandler.current.value,
@@ -51,8 +51,8 @@ const Register = () => {
                 />
               </div>
               <div className="input-box">
-                <span className="details">Email</span>
-                <input ref={emailHandler} type="text" placeholder="Enter your email" />
+                <span className="details">Birthday</span>
+                <input ref={bdHandler} type="date" placeholder="Enter your BirthDay" />
               </div>
               <div className="input-box">
                 <span className="details">Phone Number</span>
@@ -104,4 +104,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterForm;

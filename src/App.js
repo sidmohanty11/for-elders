@@ -1,23 +1,25 @@
 import './App.css';
-import Body from './components/Body';
-import Header from './components/Header';
 import { Switch, Route } from 'react-router-dom';
-import Register from './components/Register';
-import MedsForm from './components/MedsForm';
+import Register from './pages/register';
+import Home from './pages/home';
+import More from "./pages/more";
+import Login from './pages/login';
 
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Header />
-          <Body />
+          <Home />
         </Route>
         <Route exact path="/register">
           <Register />
         </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
         <Route exact path="/more">
-          <MedsForm />
+          <More />
         </Route>
       </Switch>
     </div>
