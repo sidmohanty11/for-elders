@@ -13,6 +13,7 @@ import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const RegisterForm = () => {
+  const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
   const history = useHistory();
   const [genderCategory, setGenderCategory] = useState("");
@@ -35,9 +36,9 @@ const RegisterForm = () => {
       address: addressHandler.current.value,
       gender: genderCategory,
     };
-
+    setLoading(true);
     await db.collection("users").doc(user.uid).set(userData);
-
+    setLoading(false);
     history.push("/more");
   };
 
@@ -117,7 +118,21 @@ const RegisterForm = () => {
             </RadioGroup>
           </FormControl>
           <div className="button">
-            <input type="submit" value="Register" />
+            {loading ? (
+              <img
+                src="./loading.svg"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  display: "block",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+                alt=""
+              />
+            ) : (
+              <input type="submit" value="Register" />
+            )}
           </div>
         </form>
       </div>

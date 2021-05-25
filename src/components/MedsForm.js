@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./Register.css";
 import db from "../firebase";
 import {useHistory} from "react-router-dom";
@@ -6,6 +6,7 @@ import { auth } from "../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const MedsForm = () => {
+  const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
   const again1Ref = useRef();
   const again2Ref = useRef();
@@ -20,21 +21,7 @@ const MedsForm = () => {
   const med5Ref = useRef();
 
   const history = useHistory();
-  //for retrieving data from firestore!
-  //   const getDataFromFirebase = () => {
-  //     db.collection("meds").onSnapshot((q) => {
-  //       const items = [];
-  //       q.forEach((doc) => {
-  //         items.push(doc.data());
-  //       });
-  //         setMyState(items);
-  //         console.log(items);
-  //     });
-  //   };
 
-  //   useEffect(() => {
-  //     getDataFromFirebase();
-  //   }, []);
 
   const formHandler = async (e) => {
     e.preventDefault();
@@ -46,9 +33,9 @@ const MedsForm = () => {
       med4: { name: med4Ref.current.value, time: again4Ref.current.value },
       med5: { name: med5Ref.current.value, time: again5Ref.current.value },
   };
-    // console.log(medData.map(({name, time, id}) => (console.log(name,time,id))));
-    // console.log(db.collection("users").doc(""));
-    await db.collection("users").doc(user.uid).set(medData, {merge:true});
+    setLoading(true);
+    await db.collection("users").doc(user.uid).set(medData, { merge: true });
+    setLoading(false);
     history.push('/dashboard');
   };
 
@@ -110,7 +97,21 @@ const MedsForm = () => {
             </div>
           </div>
           <div className="button">
-            <input type="submit" value="Register" />
+            {loading ? (
+              <img
+                src="./loading.svg"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  display: "block",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+                alt=""
+              />
+            ) : (
+              <input type="submit" value="Store!" />
+            )}
           </div>
         </form>
       </div>
@@ -119,3 +120,21 @@ const MedsForm = () => {
 };
 
 export default MedsForm;
+  //for retrieving data from firestore!
+  //   const getDataFromFirebase = () => {
+  //     db.collection("meds").onSnapshot((q) => {
+  //       const items = [];
+  //       q.forEach((doc) => {
+  //         items.push(doc.data());
+  //       });
+  //         setMyState(items);
+  //         console.log(items);
+  //     });
+  //   };
+
+  //   useEffect(() => {
+  //     getDataFromFirebase();
+  //   }, []);
+
+      // console.log(medData.map(({name, time, id}) => (console.log(name,time,id))));
+    // console.log(db.collection("users").doc(""));
