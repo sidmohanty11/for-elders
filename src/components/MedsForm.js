@@ -48,7 +48,7 @@ const MedsForm = () => {
   };
     // console.log(medData.map(({name, time, id}) => (console.log(name,time,id))));
     // console.log(db.collection("users").doc(""));
-    await db.collection("users").doc(user.uid).collection("meds").add(medData);
+    await db.collection("users").doc(user.uid).set(medData, {merge:true});
     history.push('/dashboard');
   };
 

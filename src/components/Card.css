@@ -6,11 +6,13 @@
 .card_container {
   width: 300px;
   overflow: hidden;
-  box-shadow: 0px 0px 15px -5px;
+  box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
   transition:0.5s;
   animation:ease-in;
-  background-color: rgb(15, 13, 13);
-  color:white;
+  background-color: #d8e2dc;
+  color:black;
   padding:10px;
   border-radius:5px;
 }
@@ -37,23 +39,13 @@
 .btn_card button{
   cursor: pointer;
   outline: none;
-  padding:10px;
+  padding:10px 40px;
   border: none;
   font-size: 18px;
   font-weight: 500;
   border-radius: 5px;
   letter-spacing: 1px;
-  background: #74ebd5; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #acb6e5,
-    #74ebd5
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #acb6e5,
-    #74ebd5
-  );
+  background: #f8f9fa;
 }
 
 .btn_card button a{

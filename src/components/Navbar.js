@@ -11,7 +11,7 @@ const Navbar = ({ logout }) => {
     return (
       <>
         <header className="header_dashboard">
-                <h1>I will never leave you.</h1>
+                <h1>Iwnly.</h1>
                 <button onClick={signOut} className="the_button">Logout</button>
         </header>
       </>
