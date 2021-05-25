@@ -14,28 +14,18 @@ const Dashboard = () => {
   };
 
   function convertFunc() {
-    let dateString = "7/15/20 7:9:00 PM";
-
-    if (dateString !== "") {
-      let dateVal = new Date(dateString);
-      let day = dateVal.getDate().toString().padStart(2, "0");
-      let month = (1 + dateVal.getMonth()).toString().padStart(2, "0");
-      let hour = dateVal.getHours().toString().padStart(2, "0");
-      let minute = dateVal.getMinutes().toString().padStart(2, "0");
-      let sec = dateVal.getSeconds().toString().padStart(2, "0");
-      let ms = dateVal.getMilliseconds().toString().padStart(3, "0");
-      let inputDate = dateVal.getFullYear() + "-" + (month) + "-" + (day) + "T" + (hour) + ":" + (minute) + ":" + (sec) + "." + (ms);
-      console.log(inputDate);
-    }
+    //change datetimelocal to seconds.
+    //subtract seconds(now) and seconds(time given) to get the val;
   }
+  
   useEffect(() => {
     const waitForUser = async () => {
       await user;
       await db;
       console.log("1st phase");
       await db
-        .collection("users")
-        .doc(user.uid)
+        .collection(user.email)
+        .doc("medData")
         .get()
         .then((doc) => {
           if (doc.exists) {
@@ -46,8 +36,7 @@ const Dashboard = () => {
         });
     };
     waitForUser();
-  }, [meds]);
-  convertFunc();
+  }, []);
 
 
   return (

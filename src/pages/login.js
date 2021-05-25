@@ -8,14 +8,15 @@ import db from "../firebase";
 
 const Login = () => {
   const history = useHistory();
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
   const signIn = async () => {
     await auth
       .signInWithPopup(provider)
-      .then(() => {
-        const userEmail = user.email;
-        const docRef = db.collection(userEmail);
-        if (docRef && user) {
+      .then(async (user) => {
+        const docRef = await db.collection(
+          user.additionalUserInfo.profile.email
+        );
+        if (docRef) {
           history.push("/dashboard");
         } else {
           history.push("/start");
