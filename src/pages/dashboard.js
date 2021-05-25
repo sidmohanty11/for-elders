@@ -87,6 +87,7 @@ const Dashboard = () => {
       <Navbar logout={logout} />
       <div className="the_main">
         <h1>Your medicines:</h1>
+        {loading && <img src="./loading.svg" width="100px" height="100px" />}
         <ul>
           {!loading && setLiItems(meds)}
         </ul>

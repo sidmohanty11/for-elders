@@ -11,8 +11,15 @@ const Navbar = ({ logout }) => {
     return (
       <>
         <header className="header_dashboard">
-                <h1>Iwnly.</h1>
-                <button onClick={signOut} className="the_button">Logout</button>
+          <h1>Iwnly.</h1>
+          <div>
+            <button onClick={() => history.push('/more')} className="the_button">
+              ChangeMeds
+            </button>
+            <button onClick={signOut} className="the_button">
+              Logout
+            </button>
+          </div>
         </header>
       </>
     );
