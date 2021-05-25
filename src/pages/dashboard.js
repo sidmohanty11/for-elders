@@ -14,10 +14,12 @@ const Dashboard = () => {
   };
 
   function convertFunc() {
+    const nextTime = moment(meds.med1.time).unix() * 1000;
+    console.log(nextTime - moment.now());
     //change datetimelocal to seconds.
     //subtract seconds(now) and seconds(time given) to get the val;
   }
-  
+
   useEffect(() => {
     const waitForUser = async () => {
       await user;
@@ -28,22 +30,19 @@ const Dashboard = () => {
         .doc("medData")
         .get()
         .then((doc) => {
-          if (doc.exists) {
-            const { med1, med2, med3, med4, med5 } = doc.data();
-            setMeds({ med1, med2, med3, med4, med5 });
-            console.log("done storing");
-          }
+          const { med1, med2, med3, med4, med5 } = doc.data();
+          setMeds({ med1, med2, med3, med4, med5 });
+          console.log("done storing");
         });
     };
     waitForUser();
   }, []);
 
-
   return (
     <>
       <Navbar logout={logout} />
       <div className="the_main">
-        <div>Your next medicine</div>
+        <div onClick={convertFunc}>Your next medicine</div>
       </div>
     </>
   );
