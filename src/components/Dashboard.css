@@ -1,5 +1,5 @@
 .the_main{
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content:center;
     height:100vh;

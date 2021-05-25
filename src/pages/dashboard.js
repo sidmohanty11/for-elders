@@ -9,13 +9,31 @@ import moment from "moment";
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [meds, setMeds] = useState({});
+  const [loading, setLoading] = useState(true);
   const logout = async () => {
     await auth.signOut().then(() => console.log("signout"));
   };
 
-  function convertFunc() {
-    const nextTime = moment(meds.med1.time).unix() * 1000;
-    console.log(nextTime - moment.now());
+  function setLiItems(meds) {
+    const {med1,med2,med3,med4,med5} = meds;
+    const medArray = [med1, med2, med3, med4, med5];
+    
+    return (
+      <ul>
+        {medArray.map((o) => (
+          <li>
+            {o.name} on{" "}
+            {`${moment(o.time).format("DD/MM/YYYY")} - ${moment(o.time).format(
+              "hh:mm A"
+            )}`}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  function convertFunc(med) {
+    return moment(med.time).unix() * 1000;
     //change datetimelocal to seconds.
     //subtract seconds(now) and seconds(time given) to get the val;
   }
@@ -26,13 +44,39 @@ const Dashboard = () => {
       await db;
       console.log("1st phase");
       await db
-        .collection(user.email)
-        .doc("medData")
-        .get()
-        .then((doc) => {
+        ?.collection(user.email)
+        ?.doc("medData")
+        ?.get()
+        ?.then((doc) => {
           const { med1, med2, med3, med4, med5 } = doc.data();
           setMeds({ med1, med2, med3, med4, med5 });
-          console.log("done storing");
+          setLoading(false);
+          
+          if (convertFunc(med1) - moment.now() >= 0) {
+            setTimeout(() => {
+              //speech api!
+            }, convertFunc(med1) - moment.now());
+          }
+          if (convertFunc(med2) - moment.now() >= 0) {
+            setTimeout(() => {
+              alert("take your medsssssssss");
+            }, convertFunc(med2) - moment.now());
+          }
+          if (convertFunc(med3) - moment.now() >= 0) {
+            setTimeout(() => {
+              alert("take your medsssssssss");
+            }, convertFunc(med3) - moment.now());
+          }
+          if (convertFunc(med4) - moment.now() >= 0) {
+            setTimeout(() => {
+              alert("take your medsssssssss");
+            }, convertFunc(med4) - moment.now());
+          }
+          if (convertFunc(med5) - moment.now() >= 0) {
+            setTimeout(() => {
+              alert("take your medsssssssss");
+            }, convertFunc(med5) - moment.now());
+          }
         });
     };
     waitForUser();
@@ -42,7 +86,10 @@ const Dashboard = () => {
     <>
       <Navbar logout={logout} />
       <div className="the_main">
-        <div onClick={convertFunc}>Your next medicine</div>
+        <h1>Your medicines:</h1>
+        <ul>
+          {!loading && setLiItems(meds)}
+        </ul>
       </div>
     </>
   );
