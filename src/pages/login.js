@@ -12,16 +12,14 @@ const Login = () => {
   const signIn = async () => {
     await auth
       .signInWithPopup(provider)
-      .then(async (user) => {
-        const docRef = await db.collection(
-          user.additionalUserInfo.profile.email
-        );
-        if (docRef) {
-          history.push("/dashboard");
-        } else {
+      .then(() => {
+        // if (auth.currentUser) {
+        //   history.push('/dashboard');
+        // } else {
           history.push("/start");
-        }
-      })
+        // }
+      }
+      )
       .catch(history.push("/"));
   };
 
