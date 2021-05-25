@@ -34,7 +34,7 @@ const MedsForm = () => {
       med5: { name: med5Ref.current.value, time: again5Ref.current.value },
   };
     setLoading(true);
-    await db.collection("users").doc(user.uid).set(medData, { merge: true });
+    await db.collection(user.email).doc("medData").set(medData, { merge: true });
     setLoading(false);
     history.push('/dashboard');
   };

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import "../components/Dashboard.css";
 import db from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import moment from "moment";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -12,12 +13,21 @@ const Dashboard = () => {
     await auth.signOut().then(() => console.log("signout"));
   };
 
-  const convertFunc = () => {
-    if(meds.med1.name){
-      // localDateToUTC(meds.med1.time)
+  function convertFunc() {
+    let dateString = "7/15/20 7:9:00 PM";
+
+    if (dateString !== "") {
+      let dateVal = new Date(dateString);
+      let day = dateVal.getDate().toString().padStart(2, "0");
+      let month = (1 + dateVal.getMonth()).toString().padStart(2, "0");
+      let hour = dateVal.getHours().toString().padStart(2, "0");
+      let minute = dateVal.getMinutes().toString().padStart(2, "0");
+      let sec = dateVal.getSeconds().toString().padStart(2, "0");
+      let ms = dateVal.getMilliseconds().toString().padStart(3, "0");
+      let inputDate = dateVal.getFullYear() + "-" + (month) + "-" + (day) + "T" + (hour) + ":" + (minute) + ":" + (sec) + "." + (ms);
+      console.log(inputDate);
     }
   }
-
   useEffect(() => {
     const waitForUser = async () => {
       await user;
@@ -34,10 +44,11 @@ const Dashboard = () => {
             console.log("done storing");
           }
         });
-      convertFunc();
     };
     waitForUser();
-  }, []);
+  }, [meds]);
+  convertFunc();
+
 
   return (
     <>

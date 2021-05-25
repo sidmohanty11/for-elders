@@ -37,7 +37,7 @@ const RegisterForm = () => {
       gender: genderCategory,
     };
     setLoading(true);
-    await db.collection("users").doc(user.uid).set(userData);
+    await db.collection(user.email).doc("userInfo").set(userData);
     setLoading(false);
     history.push("/more");
   };

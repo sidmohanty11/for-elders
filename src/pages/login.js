@@ -3,22 +3,26 @@ import { auth, provider } from "../firebase";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import "../components/Login.css";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import db from "../firebase";
 
 const Login = () => {
-    const history = useHistory();
-    const [user] = useAuthState(auth);
-    const signIn = async () => {
-      await auth.signInWithPopup(provider).catch(history.push("/"));
-      const waitingForUserID = await user.uid;
-      const waitingForDBID = await db.collection("users").doc(user.uid).id;
-        if (waitingForUserID === waitingForDBID) {
+  const history = useHistory();
+  const [user] = useAuthState(auth);
+  const signIn = async () => {
+    await auth
+      .signInWithPopup(provider)
+      .then(() => {
+        const userEmail = user.email;
+        const docRef = db.collection(userEmail);
+        if (docRef && user) {
           history.push("/dashboard");
         } else {
           history.push("/start");
         }
-    }
+      })
+      .catch(history.push("/"));
+  };
 
   return (
     <div className="whole_container">
